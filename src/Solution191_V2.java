@@ -14,3 +14,4 @@ public class Solution191_V2 {
         System.out.println(s.hammingWeight(128));
     }
 }
+// Runtime: 1 ms, faster than 100.00% of Java online submissions for Number of 1 Bits.
