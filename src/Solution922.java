@@ -19,6 +19,9 @@ Note:
 3. 0 <= A[i] <= 1000
  */
 public class Solution922 {
+
+    // Time Complexity : O(n)
+    // Space Complexity : O(n)
     public int[] sortArrayByParityII(int[] A) {
         if (A == null || A.length == 0) {
             return A;
