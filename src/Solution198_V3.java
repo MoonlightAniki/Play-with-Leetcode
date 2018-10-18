@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 // 198. House Robber
 // https://leetcode.com/problems/house-robber/description/
 /*
@@ -17,38 +15,31 @@ Output: 12
 Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
              Total amount you can rob = 2 + 9 + 1 = 12.
  */
-public class Solution198 {
-    // 记忆化搜索+递归
-    private int[] memo;
+public class Solution198_V3 {
 
     public int rob(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
         }
-        memo = new int[nums.length];//memo[i]代表tryRob(nums, i)
-        Arrays.fill(memo, -1);
-        return tryRob(nums, 0);
-    }
+        int n = nums.length;
+        int[] memo = new int[n];//memo[index]表示考虑从nums[0...index]中偷取财物，memo[n-1]就是问题的解
 
-    // 考虑从nums[index...n-1]中偷取
-    private int tryRob(int[] nums, int index) {
-        if (index >= nums.length) {
-            return 0;
+        memo[0] = nums[0];
+        for (int i = 1; i < n; ++i) {
+            memo[i] = Math.max(
+                    nums[i] + (i < 2 ? 0 : memo[i - 2]),//偷取i位置的财物，并考虑偷取nums[0...i-2]
+                    memo[i - 1]//不偷取i,考虑偷取nums[0...i-1]
+
+            );
         }
-        if (memo[index] != -1) {
-            return memo[index];
-        }
-        memo[index] = Math.max(nums[index] + tryRob(nums, index + 2),//偷取i并考虑从nums[i+2...n-1]中偷取
-                tryRob(nums, index + 1)//不偷取i，考虑从nums[i+1...n-1]中偷取
-        );
-        return memo[index];
+        return memo[n - 1];
     }
 
     public static void main(String[] args) {
-        Solution198 s = new Solution198();
-        int[] nums = new int[]{1, 2, 3, 1};
-//        int[] nums = new int[]{2, 7, 9, 3, 1};
+        Solution198_V3 s = new Solution198_V3();
+//        int[] nums = new int[]{1, 2, 3, 1};
+        int[] nums = new int[]{2, 7, 9, 3, 1};
         System.out.println(s.rob(nums));
     }
 }
-//Runtime: 5 ms, faster than 32.13% of Java online submissions for House Robber.
+// Runtime: 4 ms, faster than 57.63% of Java online submissions for House Robber.
