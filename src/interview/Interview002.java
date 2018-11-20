@@ -1,11 +1,11 @@
-package demo;
+package interview;
 
 import java.util.Arrays;
 
 // iHandy面试题
 // 将整数 n 转成字符数组，不可以使用库函数(StringBuilder也属于库函数)
 // 12345 转成 {'1', '2', '3', '4', '5'}
-public class Demo010 {
+public class Interview002 {
     public static char[] toString(int n) {
         if (n == 0) {
             return new char[]{'0'};

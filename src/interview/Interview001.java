@@ -1,4 +1,4 @@
-package demo;
+package interview;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +12,7 @@ import java.util.Map;
 // "abcabc" 满足条件(1)
 // "aabbccc" 满足条件(2)
 // "aabbc" 满足条件(2)
-public class Demo009 {
+public class Interview001 {
     public static boolean isBeautiful(String s) {
         if (s == null) {
             return false;
